@@ -1,0 +1,32 @@
+CREATE TABLE bd_sicredi.pauta
+( id INT AUTO_INCREMENT,
+  descricao VARCHAR(100) NOT NULL,
+CONSTRAINT key_pauta PRIMARY KEY (Id)
+);
+
+CREATE TABLE bd_sicredi.sessao
+( id INT AUTO_INCREMENT,
+  data_hora_inicio DATETIME NULL,
+  data_hora_fim DATETIME NULL,
+  id_pauta INT,
+  agencia VARCHAR(05),
+CONSTRAINT key_sessao PRIMARY KEY (id)
+);
+
+CREATE TABLE bd_sicredi.associados
+( conta varchar(06) NOT NULL,
+  agencia VARCHAR(05) NOT NULL,
+  nome VARCHAR(35) NOT NULL,
+  endereco VARCHAR(50) NOT NULL,
+  cpf VARCHAR(11) NOT NULL,
+CONSTRAINT key_associados PRIMARY KEY (agencia, conta)
+);
+
+CREATE TABLE bd_sicredi.votacao
+( conta varchar(06) NOT NULL,
+  agencia VARCHAR(05) NOT NULL,
+  id_pauta INT NOT NULL,
+  id_sessao INT NOT NULL,
+  voto VARCHAR(01) NULL,
+CONSTRAINT key_votacao PRIMARY KEY ( agencia, conta, id_pauta)
+);
